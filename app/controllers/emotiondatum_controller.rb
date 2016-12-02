@@ -1,0 +1,2 @@
+class EmotiondatumController < ApplicationController
+end

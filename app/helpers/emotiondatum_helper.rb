@@ -1,0 +1,2 @@
+module EmotiondatumHelper
+end

@@ -1,0 +1,2 @@
+class SeatdatumController < ApplicationController
+end

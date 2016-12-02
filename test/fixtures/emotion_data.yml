@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feeling: MyString
+  anger: 9.99
+  happiness: 9.99
+  sadness: 9.99
+
+two:
+  feeling: MyString
+  anger: 9.99
+  happiness: 9.99
+  sadness: 9.99

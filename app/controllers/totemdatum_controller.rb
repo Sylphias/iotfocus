@@ -1,0 +1,2 @@
+class TotemdatumController < ApplicationController
+end

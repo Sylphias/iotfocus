@@ -31,13 +31,13 @@ module API
         requires :name, type: String
       end
       get :by_name do
-        Person.find(params[:name])
+        Person.find_by name: params[:name]
       end
     end
     
 
     resource :emotiondatum do
-      desc  'Gets a list of persons'
+      desc  'Gets a list of emotiondatum'
       params do 
         requires :id, type: Integer
       end

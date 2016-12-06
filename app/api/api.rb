@@ -18,12 +18,20 @@ module API
       post do
         Person.create(name: params[:name], age: params[:age], gender: params[:gender])
       end
-      desc 'get current user'
+      desc 'get current user with user Id'
       params do
         requires :id, type: Integer
       end
-      get do
+      get :by_id do
         Person.find(params[:id])
+      end
+
+      desc 'get current user with username'
+      params do
+        requires :name, type: String
+      end
+      get :by_name do
+        Person.find(params[:name])
       end
     end
     
@@ -37,7 +45,7 @@ module API
       get :person_emotion do
         Person.find(params[:id]).EmotionDatum.all
       end
-      desc 'Create a person'
+      desc 'Create a emotion datum'
       params do
         requires :feeling, type: Float
         requires :anger, type: Float

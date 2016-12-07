@@ -4,7 +4,7 @@ module API
     version 'v1', using: :header, vendor: 'Focus'
     format :json
     resource :person do
-      # /person/all_people
+      #GET /person/all_people
       desc  'Gets a list of persons'
       get :all_people do
         Person.all
@@ -15,9 +15,13 @@ module API
         requires :age, type: Integer
         requires :gender, type: String
       end
+
+      #POST /person?name=name&age=age&gender=gender
       post do
         Person.create(name: params[:name], age: params[:age], gender: params[:gender])
       end
+
+      #GET /person?id=id
       desc 'get current user with user Id'
       params do
         requires :id, type: Integer
@@ -26,6 +30,7 @@ module API
         Person.find(params[:id])
       end
 
+      #GET /person?name=name
       desc 'get current user with username'
       params do
         requires :name, type: String
@@ -41,10 +46,12 @@ module API
       params do 
         requires :id, type: Integer
       end
-      # localhost:3000/emotiondatum/person_emotion?id=1
+      # GET /emotiondatum/person_emotion?id=1
       get :person_emotion do
         Person.find(params[:id]).EmotionDatum.all
       end
+
+      # GET /emotiondatum?feeling=feeling&anger=anger&happiness=happiness&sadness=sadness&person_id=person_id
       desc 'Create a emotion datum'
       params do
         requires :feeling, type: Float
@@ -58,14 +65,17 @@ module API
       end
     end
     
+    #GET /seatdatum/person_seat?id=id
     resource :seatdatum do
-      desc  'Gets a list of persons'
+      desc  'Gets a list of a persons seat data'
       params do 
         requires :id, type: Integer
       end
       get :person_seat do
         Person.find(params[:id]).SeatDatum.all
       end
+
+      #POST /seatdatum?is_sitting=is_sitting&person_id=person_id
       desc 'Create a seat state change'
       params do
         requires :is_sitting, type: Boolean
@@ -78,14 +88,18 @@ module API
     end
 
     resource :totemdatum do
-      desc  'Gets a list of persons'
+
+      #GET totemdatum/person_totem?id=id
+      desc  'Gets a list of persons totem data'
       params do 
         requires :id, type: Integer
       end
-      get :person_emotion do
+      get :person_totem do
         Person.find(params[:id]).TotemDatum.all
       end
-      desc 'Create a person'
+
+      #GET totemdatum?person_id=id&state=state
+      desc 'Create a totemdatum'
       params do
         requires :state, type: String
         requires :person_id, type: Integer

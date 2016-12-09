@@ -16,12 +16,13 @@ module API
         requires :gender, type: String
       end
 
-      #POST /person?name=name&age=age&gender=gender
+      #POST /person
+      #attach person json as data
       post do
         Person.create(name: params[:name], age: params[:age], gender: params[:gender])
       end
 
-      #GET /person?id=id
+      #GET /person/by_id?id=id
       desc 'get current user with user Id'
       params do
         requires :id, type: Integer
@@ -30,7 +31,7 @@ module API
         Person.find(params[:id])
       end
 
-      #GET /person?name=name
+      #GET /person/by_name?name=name
       desc 'get current user with username'
       params do
         requires :name, type: String
@@ -51,7 +52,8 @@ module API
         Person.find(params[:id]).EmotionDatum.all
       end
 
-      # GET /emotiondatum?feeling=feeling&anger=anger&happiness=happiness&sadness=sadness&person_id=person_id
+      # POST /emotiondatum
+      # Post emotiondatum as data json
       desc 'Create a emotion datum'
       params do
         requires :feeling, type: Float
@@ -75,7 +77,8 @@ module API
         Person.find(params[:id]).SeatDatum.all
       end
 
-      #POST /seatdatum?is_sitting=is_sitting&person_id=person_id
+      #POST /seatdatum
+      # post seatdatum as data json
       desc 'Create a seat state change'
       params do
         requires :is_sitting, type: Boolean

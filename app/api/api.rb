@@ -14,12 +14,13 @@ module API
         requires :name, type: String
         requires :age, type: Integer
         requires :gender, type: String
+        requires :ip_address, type: String
       end
 
       #POST /person
       #attach person json as data
       post do
-        Person.create(name: params[:name], age: params[:age], gender: params[:gender])
+        Person.create(name: params[:name], age: params[:age], gender: params[:gender], ip_addr: params[:ip_address])
       end
 
       #GET /person/by_id?id=id
@@ -56,7 +57,7 @@ module API
       # Post emotiondatum as data json
       desc 'Create a emotion datum'
       params do
-        requires :feeling, type: Float
+        requires :feeling, type: String
         requires :anger, type: Float
         requires :happiness, type: Float
         requires :sadness, type: Float

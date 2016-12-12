@@ -1,0 +1,104 @@
+.side-bar.animated.fadeInLeft
+  .logo
+    =image_tag "LogoWhite.png"
+  .app-title.medium-font
+    |Focus
+
+  .menu-item
+    =link_to(root_path)
+      .menu-item-logo.glyphicon.glyphicon-signal
+      .menu-item-title.medium-font
+        |Overview
+    
+  .menu-item
+    / =link_to(individual_path("Skara"))
+      .menu-item-logo.glyphicon.glyphicon-user
+      .menu-item-title.medium-font
+        |Personel
+  .menu-item
+    / =link_to(inventory_path)
+      .menu-item-logo.glyphicon.glyphicon-shopping-cart
+      .menu-item-title.medium-font
+        |Inventory
+      
+.dashboard-area
+  .container-fluid
+    .section-title-container.row.animated.fadeInRight
+      .app-insights-title.heavy-font
+        |At a glance
+        hr
+    .app-insights.row
+      .insight-container.col-lg-4.animated.fadeInRight
+        .card
+          .card-title.medium-font
+            |Workers who seem troubled
+            hr
+          .worker-list
+            table.table.table-hover
+              / -@most_productive_workers.each do |prod_worker|
+                tr
+                  td.prod_worker_name
+                    =link_to(individual_path(prod_worker[0]))
+                      =prod_worker[0]
+                  td.prod_worker_items
+                    =prod_worker[1]
+
+
+      .insight-container.col-lg-4.animated.fadeInRight
+        .card
+          .card-title.medium-font
+            |Workers who have worked the most Hours
+            hr
+          .items-list
+            table.table.table-hover
+              / -@expiring_items.each do |item|
+                tr
+                  td.prod_worker_name
+                    =item[0]
+                  td.prod_worker_items
+                    =item[1]
+      .insight-container.col-lg-4.animated.fadeInRight
+        .card
+          .card-title.medium-font
+            |Announcements
+            hr
+            .announcement_card.medium-fonts
+              / =@announcement
+    .section-title-container.row.animated.fadeInRight
+      .app-insights-title.heavy-font
+        |How we are doing this month
+        hr
+
+    .row
+      .detailed-container.col-lg-6.animated.fadeInRight
+        .data-chart.card
+          .card-title.medium-font
+            / This is to show what is the %age of the day is spent doing what
+            |24 Hour Work Day Breakdown
+            hr
+          .chart-card
+            canvas.isc
+      .detailed-container.col-lg-offset-1.col-lg-4.animated.fadeInRight 
+        .data-chart.card
+          .card-title.medium-font
+            |Workplace Mood
+            hr
+          .emotion-card
+            - case @day_top_emotion
+              - when "Neutral"
+                =image_tag("neutral.png", class: "emoji-icon")
+                .mood-card-label.col-lg-12.italics-medium-font
+                  |Rather Neutral
+              - when "Anger"
+                =image_tag("angry.png", class: "emoji-icon")
+                .mood-card-label.col-lg-12.italics-medium-font
+                  |Generally Angry
+              - when "Happiness"
+                =image_tag("happy.png", class: "emoji-icon")
+                .mood-card-label.col-lg-12.italics-medium-font
+                  |Generally Happy
+              - when "Sadness"
+                =image_tag("sad.png", class: "emoji-icon")            
+                .mood-card-label.col-lg-12.italics-medium-font
+                  |Generally Sad
+=javascript_include_tag 'index_charts.js'

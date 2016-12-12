@@ -14,7 +14,7 @@ module API
         requires :name, type: String
         requires :age, type: Integer
         requires :gender, type: String
-        requires :ip_address, type: String
+        requires :ip_addr, type: String
       end
 
       #POST /person
@@ -22,6 +22,37 @@ module API
       post do
         Person.create(name: params[:name], age: params[:age], gender: params[:gender], ip_addr: params[:ip_address])
       end
+
+      desc 'Update a person particulars and ip_address'
+      params do
+        requires :name, type: String
+        requires :age, type: Integer
+        requires :gender, type: String
+        requires :ip_addr, type: String
+        requires :id, type: Integer
+      end
+
+      #put /api/person
+      #attach person json as data
+      put do
+        Person.find(params[:id]).update(name: params[:name], age: params[:age], gender: params[:gender], ip_addr: params[:ip_addr])
+      end
+
+      desc 'Update a person ip_address'
+      params do
+        requires :name, type: String
+        requires :age, type: Integer
+        requires :gender, type: String
+        requires :ip_addr, type: String
+        requires :id, type: Integer
+      end
+
+      #put /api/person/update_ipaddr
+      #attach person json as data
+      put :update_ipaddr do
+        Person.find(params[:id]).update(ip_addr: params[:ip_addr])
+      end
+
 
       #GET /person/by_id?id=id
       desc 'get current user with user Id'
@@ -93,7 +124,7 @@ module API
 
     resource :totemdatum do
 
-      #GET totemdatum/person_totem?id=id
+      #GET totemdatum
       desc  'Gets a list of persons totem data'
       params do 
         requires :id, type: Integer
@@ -101,8 +132,17 @@ module API
       get :person_totem do
         Person.find(params[:id]).TotemDatum.all
       end
+      #Get iotfocus.herokuapp.com/api/totemdatum/latest_state
+      desc 'get the lastest TotemDatum'
+      params do
+        requries :id, type: Integer
+      end
 
-      #GET totemdatum?person_id=id&state=state
+      get :latest_state
+        Person.find(params[:id]).TotemDatum.last
+      end
+
+      #GET totemdatum
       desc 'Create a totemdatum'
       params do
         requires :state, type: String

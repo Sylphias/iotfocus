@@ -53,12 +53,12 @@ module API
         Person.find(params[:id]).update(ip_addr: params[:ip_addr])
       end
 
-
       #GET /person/by_id?id=id
       desc 'get current user with user Id'
       params do
         requires :id, type: Integer
       end
+
       get :by_id do
         Person.find(params[:id])
       end
@@ -68,9 +68,11 @@ module API
       params do
         requires :name, type: String
       end
+
       get :by_name do
         Person.find_by name: params[:name]
       end
+
     end
     
 
@@ -97,6 +99,7 @@ module API
       post do
         EmotionDatum.create(feeling: params[:feeling],anger: params[:anger],happiness: params[:happiness],sadness: params[:sadness],person_id: params[:person_id])
       end
+
     end
     
     #GET /seatdatum/person_seat?id=id
@@ -132,13 +135,13 @@ module API
       get :person_totem do
         Person.find(params[:id]).TotemDatum.all
       end
+
       #Get iotfocus.herokuapp.com/api/totemdatum/latest_state
       desc 'get the lastest TotemDatum'
       params do
-        requries :id, type: Integer
+        requires :id, type: Integer
       end
-
-      get :latest_state
+      get :latest_state do
         Person.find(params[:id]).TotemDatum.last
       end
 
@@ -151,6 +154,9 @@ module API
       post do
         TotemDatum.create(state: params[:state],person_id: params[:person_id])
       end
+
     end
+
+
   end
 end

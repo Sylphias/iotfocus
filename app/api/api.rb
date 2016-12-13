@@ -145,13 +145,23 @@ module API
         Person.find(params[:id]).TotemDatum.last
       end
 
-      #GET totemdatum
+      #Get iotfocus.herokuapp.com/api/totemdatum/latest_state
+      desc 'get the lastest TotemDatum that is not the current state'
+      params do
+        requires :id, type: Integer
+      end
+      get :latest_state do
+        Person.find(params[:id]).TotemDatum.where(is_current_state: false).last
+      end
+
+      #POST totemdatum
       desc 'Create a totemdatum'
       params do
         requires :state, type: String
         requires :person_id, type: Integer
       end
       post do
+        Person.find(params[:person_id]).TotemDatum.update(is_current_state: false)if Person.find(params[:person_id]).TotemDatum.last
         TotemDatum.create(state: params[:state],person_id: params[:person_id])
       end
 

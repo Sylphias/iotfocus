@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213123907) do
+ActiveRecord::Schema.define(version: 20161213131529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20161213123907) do
 
   create_table "totem_data", force: :cascade do |t|
     t.string   "state"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "person_id"
-    t.boolean  "is_current_state"
+    t.boolean  "is_current_state", default: true
   end
 
 end

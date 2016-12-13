@@ -28,10 +28,9 @@ def index
       work_hour[person.name] = [day_hour, person.id] if day_emotion
     end
     @work_hour_hash = work_hour.sort_by {|_key, value| value}.reverse[0..2]
-    moving_avg_emotion = get_average_feeling(person.EmotionDatum.get_5minutes__emotions)
-    @bad_emotion_average[person.name] = [moving_avg_emotion,person.id] if moving_avg_emotion == "Anger" || moving_avg_emotion == "Sadness"
+    moving_avg_emotion = get_average_feeling(person.EmotionDatum.get_30minutes_emotions)
+    @bad_emotion_average[person.name] = [moving_avg_emotion,person.id] if moving_avg_emotion[0] == "Anger" || moving_avg_emotion[0] == "Sadness"
   end
-
 
   #TODO Get the longest Working hour workers
   #Create an announcement model to showeixt

@@ -36,14 +36,18 @@
             hr
           .worker-list
             table.table.table-hover
-              -if @bad_emotion_average == nil
+              -unless @bad_emotion_average == nil
                 -@bad_emotion_average.each do |key,value|
                   tr
                     td.prod_worker_name
-                      =link_to(individual_path(prod_worker[0]))
-                        =prod_worker[0]
+                      / =link_to(individual_path(value[0][1]))
+                      =key
                     td.prod_worker_items
-                      =prod_worker[1]
+                      - case @day_top_emotion
+                        - when "Sadness"
+                          |Sad
+                        - when "Anger"
+                          |Angry
               -else
                 .heavy-font.no-workers
                   |Everyone is feeling good!
@@ -68,7 +72,7 @@
             |Announcements
             hr
             .announcement_card.medium-fonts
-              / =@announcement
+              | FOCUS IS ONLINE!
     .section-title-container.row.animated.fadeInRight
       .app-insights-title.heavy-font
         |How we are doing Today

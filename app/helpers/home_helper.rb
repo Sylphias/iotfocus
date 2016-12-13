@@ -32,7 +32,7 @@ module HomeHelper
   end
 
   def get_average_feeling(feelingData)
-    ratioHash = get_percentages(feelingData)
+    ratioHash = get_percentages(feelingData.pluck(:feeling))
     maxEntry = []
     maxValue  = 0
     unless ratioHash == nil
@@ -43,6 +43,7 @@ module HomeHelper
         end
       end
     end
+    return maxEntry
   end
   
   def formatted_duration total_seconds

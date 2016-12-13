@@ -18,15 +18,16 @@ def index
 
   #Get the most hardworking people and the people who are emotionally troubled at the moment
   @all_people = Person.all
-  @work_hour_hash = {}
+  work_hour = {}
   @bad_emotion_average = {}
 
   @all_people.each do |person|
     day_emotion = person.TotemDatum.get_day_states()
     day_hour = get_day_work_hour(day_emotion)
     unless day_hour == 0
-      @work_hour_hash[person.name] = [day_hour, person.id] if day_emotion
+      work_hour[person.name] = [day_hour, person.id] if day_emotion
     end
+    @work_hour_hash = work_hour.sort_by {|_key, value| value}.reverse[0..2]
     moving_avg_emotion = get_average_feeling(person.EmotionDatum.get_5minutes__emotions)
     @bad_emotion_average[person.name] = [moving_avg_emotion,person.id] if moving_avg_emotion == "Anger" || moving_avg_emotion == "Sadness"
   end

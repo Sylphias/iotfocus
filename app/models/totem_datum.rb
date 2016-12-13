@@ -5,6 +5,6 @@ class TotemDatum < ApplicationRecord
       self.is_current_state ||= true
     end
 
-  scope :get_day_states, ->{TotemDatum.select(:state).where(created_at: (Date.today-1)..Date.today)}
+  scope :get_day_states, ->{TotemDatum.where(created_at: (Date.today-1)..Date.today)}
 
 end

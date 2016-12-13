@@ -1,84 +1,35 @@
 
 $( window ).load(function(){
 
-  
+
 emojione.imageType = 'png';
 emojione.sprites = true;
+console.log(gon.day_emotions_keys);
   var data = {
-    labels: gon.day_emotions_keys,
+    labels: gon.day_states_keys,
     datasets: [
         {
-            data: gon.day_emotions_values,
+            data: gon.day_states_values,
             backgroundColor: [
                 "#FF6384",
                 "#36A2EB",
                 "#FFCE56",
-                "#2ecc71",
+                "#16a085",
+                "#ecf0f1",
+                "#d35400"
             ],
             hoverBackgroundColor: [
                 "#FF6384",
                 "#36A2EB",
                 "#FFCE56",
-                "#2ecc71",
+                "#16a085",
+                "#ecf0f1",
+                "#d35400"
             ]
         }]
 
   };
- var proj_data = {
-     labels: [
-      "June",
-      "July",
-      "August",
-      "September",
-      "Projected"
-  ],
-  datasets: [
-      {
-          data: [100, 150, 250, 400,700],
-          backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#2ecc71",
-              "#9b59b6",
-          ],
-          hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
-              "#FFCE56",
-              "#2ecc71",
-              "#9b59b6",
-          ]
-      }]
- }
 
-var individual_data = {
-    labels: ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
-    datasets: [
-        {
-            label: "Packages/hour",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [20,25,20,10,15,30,30,35,40],
-            spanGaps: false,
-        }
-    ]
-};
 try{
 var myPieChart = new Chart($(".isc").get(0).getContext("2d"),{
     type: 'pie',

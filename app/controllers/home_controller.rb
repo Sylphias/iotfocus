@@ -22,15 +22,18 @@ def index
   @bad_emotion_average = {}
 
   @all_people.each do |person|
-    day_emotion = person.EmotionDatum.get_day_emotions
-    @work_hour_hash[person.name] = [get_day_work_hour(day_emotion), person.id] if day_emotion
-    moving_avg_emotion = get_avergage_feeling(Person.EmotionDatum.get_5minutes__emotions)
+    day_emotion = person.TotemDatum.get_day_states()
+    day_hour = get_day_work_hour(day_emotion)
+    unless day_hour == 0
+      @work_hour_hash[person.name] = [day_hour, person.id] if day_emotion
+    end
+    moving_avg_emotion = get_average_feeling(person.EmotionDatum.get_5minutes__emotions)
     @bad_emotion_average[person.name] = [moving_avg_emotion,person.id] if moving_avg_emotion == "Anger" || moving_avg_emotion == "Sadness"
   end
 
 
   #TODO Get the longest Working hour workers
-  #Create an announcement model to show
+  #Create an announcement model to showeixt
 
 end
 

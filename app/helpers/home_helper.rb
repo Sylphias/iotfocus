@@ -26,16 +26,7 @@ module HomeHelper
     is_working = false
     total = 0
     statesData.each do |state|
-      byebug
-      if state["state"] = "Working" 
-        is_working = true
-        old_time = state["created_at"]
-      end
-      if is_working
-        total += ((state["created_at"] -  old_time)/3600)
-        is_working = false
-      end
-
+      total += state.updated_at - state.created_at
     end
     return total
   end
@@ -44,10 +35,12 @@ module HomeHelper
     ratioHash = get_percentages(feelingData)
     maxEntry = []
     maxValue  = 0
-    ratioHash.each do |k,v|
-      if v > maxValue
-        maxValue = v
-        maxEntry = [k,v]
+    unless ratioHash == nil
+      ratioHash.each do |k,v|
+        if v > maxValue
+          maxValue = v
+          maxEntry = [k,v]
+        end
       end
     end
   end

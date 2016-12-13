@@ -114,11 +114,11 @@ module API
       # case 1:
       #     state = "Meeting";
       # case 2:
-      #     state = "Coding";
+      #     state = "Working";
       # case 3:
       #     state = "Break";
       # case 4:
-      #     state = "Research";
+      #     state = "Home";
 
 
     resource :totemdatum do

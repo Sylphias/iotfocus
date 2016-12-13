@@ -8,7 +8,8 @@ function initializeIndexCharts(){
       options: {
           legend: {
               display: true,
-          }
+          },
+          
       }
     });
 }

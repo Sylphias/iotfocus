@@ -108,6 +108,19 @@ module API
 
     end
 
+
+      # case 0:
+      #     state = "Email";
+      # case 1:
+      #     state = "Meeting";
+      # case 2:
+      #     state = "Coding";
+      # case 3:
+      #     state = "Break";
+      # case 4:
+      #     state = "Research";
+
+
     resource :totemdatum do
 
       #GET totemdatum

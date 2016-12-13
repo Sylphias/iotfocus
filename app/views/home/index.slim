@@ -11,15 +11,16 @@
         |Overview
     
   .menu-item
-    / =link_to(individual_path("Skara"))
-      .menu-item-logo.glyphicon.glyphicon-user
+    =link_to(announce_path)
+      .menu-item-logo.glyphicon.glyphicon-bullhorn
       .menu-item-title.medium-font
-        |Personel
+        |Announce
   .menu-item
-    / =link_to(inventory_path)
-      .menu-item-logo.glyphicon.glyphicon-shopping-cart
+    =link_to(logout_path)
+      .menu-item-logo.glyphicon.glyphicon-remove-sign
       .menu-item-title.medium-font
-        |Inventory
+        |Logout
+      
       
 .dashboard-area
   .container-fluid
@@ -60,7 +61,7 @@
                   td.prod_worker_name
                     =key
                   td.prod_worker_items
-                    =value[0]
+                    ="%.4f" % value[0] + " Hours"
       .insight-container.col-lg-4.animated.fadeInRight
         .card
           .card-title.medium-font

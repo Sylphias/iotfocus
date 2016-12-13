@@ -1,0 +1,23 @@
+.side-bar.animated.fadeInLeft
+  .logo
+    =image_tag "LogoWhite.png"
+  .app-title.medium-font
+    |Focus
+
+  .menu-item
+    =link_to(root_path)
+      .menu-item-logo.glyphicon.glyphicon-signal
+      .menu-item-title.medium-font
+        |Overview
+    
+  .menu-item
+    =link_to(announce_path)
+      .menu-item-logo.glyphicon.glyphicon-bullhorn
+      .menu-item-title.medium-font
+        |Announce
+  .menu-item
+    =link_to(logout_path)
+      .menu-item-logo.glyphicon.glyphicon-remove-sign
+      .menu-item-title.medium-font
+        |Logout
+      

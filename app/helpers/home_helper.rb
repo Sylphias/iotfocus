@@ -28,7 +28,7 @@ module HomeHelper
     statesData.each do |state|
       total += state.updated_at - state.created_at
     end
-    return total
+    return (total/(60*60))
   end
 
   def get_average_feeling(feelingData)
@@ -45,4 +45,11 @@ module HomeHelper
     end
   end
   
+  def formatted_duration total_seconds
+    hours = total_seconds / (60 * 60)
+    minutes = (total_seconds / 60) % 60
+    seconds = total_seconds % 60
+    "#{ hours } h #{ minutes } m #{ seconds } s"
+  end
+
 end

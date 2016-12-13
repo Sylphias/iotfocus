@@ -1,9 +1,6 @@
 
 $( window ).load(function(){
 
-
-emojione.imageType = 'png';
-emojione.sprites = true;
 console.log(gon.day_emotions_keys);
   var data = {
     labels: gon.day_states_keys,
@@ -15,16 +12,16 @@ console.log(gon.day_emotions_keys);
                 "#36A2EB",
                 "#FFCE56",
                 "#16a085",
-                "#ecf0f1",
-                "#d35400"
+                "#9b59b6",
+                "#2c3e50"
             ],
             hoverBackgroundColor: [
                 "#FF6384",
                 "#36A2EB",
                 "#FFCE56",
                 "#16a085",
-                "#ecf0f1",
-                "#d35400"
+                "#9b59b6",
+                "#2c3e50"
             ]
         }]
 

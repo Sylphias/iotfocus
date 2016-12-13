@@ -18,7 +18,7 @@ function initializeIndexCharts(){
 //     data: individual_data,
 //   });
 // }
-// catch (e){
-//   console.log("indiv page" + e)
+catch (e){
+  console.log("indiv page" + e)
 
-// }
+}

@@ -40,6 +40,9 @@ end
 def login
 end
 
+def announce
+end
+
 def emotion
 end
 

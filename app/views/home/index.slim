@@ -35,7 +35,7 @@
             hr
           .worker-list
             table.table.table-hover
-              / -@most_productive_workers.each do |prod_worker|
+              -@bad_emotion_average.each do |key,value|
                 tr
                   td.prod_worker_name
                     =link_to(individual_path(prod_worker[0]))
@@ -51,12 +51,12 @@
             hr
           .items-list
             table.table.table-hover
-              / -@expiring_items.each do |item|
+               -@work_hour_hash.each do |key,value|
                 tr
                   td.prod_worker_name
-                    =item[0]
+                    =key
                   td.prod_worker_items
-                    =item[1]
+                    =value[0]
       .insight-container.col-lg-4.animated.fadeInRight
         .card
           .card-title.medium-font
@@ -66,7 +66,7 @@
               / =@announcement
     .section-title-container.row.animated.fadeInRight
       .app-insights-title.heavy-font
-        |How we are doing this month
+        |How we are doing Today
         hr
 
     .row
@@ -101,4 +101,7 @@
                 =image_tag("sad.png", class: "emoji-icon")            
                 .mood-card-label.col-lg-12.italics-medium-font
                   |Generally Sad
+              -else 
+                .heavy-font
+                  |Not Enough Data Collected
 =javascript_include_tag 'index_charts.js'

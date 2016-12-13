@@ -1,5 +1,6 @@
 class EmotionDatum < ApplicationRecord
   belongs_to :person
-  scope :get_day_emotions, -> (start_date, end_date){EmotionDatum.select(:feeling).where(created_at: start_date..end_date)}
+  scope :get_day_emotions, ->{EmotionDatum.select(:feeling).where(created_at: (Date.today-1)..Date.today)}
+  scope :get_5minutes__emotions, -> {EmotionDatum.select(:feeling).where(created_at:(Time.now-(5*60))}
 
 end
